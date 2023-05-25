@@ -1,0 +1,16 @@
+{
+    "name": "postgresql-connector",
+    "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+    "database.hostname": "db",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "12345678",
+    "database.dbname": "bankai-database",
+    "database.server.name": "postgres",
+    "table.include.list": "public.submissions_log,public.questions",
+    "table.whitelist": "public.submissions_log,public.questions",
+    "topic.prefix": "topic_statistic"
+    }
+ }
