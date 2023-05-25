@@ -93,8 +93,8 @@ class AssignmentSerializer(serializers.ModelSerializer):
         task_questions = assignment.task.task_questions
 
         result = []
-        for task_question in task_questions:
-            result.append(QuestionDetailSerializer(instance=task_question, context={'assignment_id': assignment.id}))
+        for task_question in task_questions.all():
+            result.append(QuestionDetailSerializer(instance=task_question, context={'assignment_id': assignment.id}).data)
 
         return result
 
