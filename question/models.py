@@ -24,7 +24,8 @@ class TestCase(models.Model):
 
 class Language(models.Model):
     name = models.CharField(blank=True, null=True)
-    judge = models.IntegerField(blank=False, null=False)
+    judge_language_id = models.IntegerField(blank=False, null=False)
+    compiler_option = models.TextField(blank=True, null=True)
 
 
 class Constraint(models.Model):
