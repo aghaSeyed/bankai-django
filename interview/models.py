@@ -17,7 +17,7 @@ class Assignment(BaseModel):
         Task, on_delete=models.CASCADE, related_name='assignments', null=False, blank=False
     )
     email = models.EmailField(null=False)
-    expiration_date = models.DateTimeField()
+    start_date = models.DateTimeField()
 
 
 class TaskQuestion(BaseModel):
@@ -25,7 +25,7 @@ class TaskQuestion(BaseModel):
         Task, on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
     )
     question = models.ForeignKey(
-        'question.models.Question', on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
+        'question.Question', on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
     )
     score = models.IntegerField(null=False)
 
@@ -35,6 +35,9 @@ class AssignmentGrade(BaseModel):
         Assignment, on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
     )
     question = models.ForeignKey(
-        'question.models.Question', on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
+        'question.Question', on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
     )
     grade = models.IntegerField(null=False)
+    submit_count = models.IntegerField(default=0)
+    submitted_code = models.TextField()
+

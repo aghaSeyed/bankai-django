@@ -13,7 +13,7 @@ class Question(BaseModel):
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                              related_name='questions')
-    category = models.ForeignKey("Category", on_delete=models.SET_NULL, related_name='questions')
+    category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name='questions')
 
 
 class TestCase(models.Model):
