@@ -11,6 +11,6 @@
     "database.server.name": "postgres",
     "table.include.list": "public.submissions_log,public.questions",
     "table.whitelist": "public.submissions_log,public.questions",
-    "topic.prefix": "topic_statistic"
+    "topic.prefix": "statistic"
     }
  }
