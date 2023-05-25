@@ -25,7 +25,7 @@ class TaskQuestion(BaseModel):
         Task, on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
     )
     question = models.ForeignKey(
-        'question.models.question', on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
+        'question.models.Question', on_delete=models.CASCADE, related_name='task_questions', null=False, blank=False
     )
     score = models.IntegerField(null=False)
 
@@ -35,6 +35,6 @@ class AssignmentGrade(BaseModel):
         Assignment, on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
     )
     question = models.ForeignKey(
-        'question.models.question', on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
+        'question.models.Question', on_delete=models.CASCADE, related_name='assignment_grades', null=False, blank=False
     )
     grade = models.IntegerField(null=False)
