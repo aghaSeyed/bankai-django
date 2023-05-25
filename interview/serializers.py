@@ -107,3 +107,9 @@ class AssignmentSerializer(serializers.ModelSerializer):
             'end_time',
             'question_details',
         ]
+
+
+class SubmissionSerializer(serializers.Serializer):
+    task_question_id = serializers.IntegerField()
+    code = serializers.CharField()
+    language_id = serializers.IntegerField()
