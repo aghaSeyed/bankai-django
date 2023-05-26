@@ -34,6 +34,11 @@ class AnswerSerializer(serializers.ModelSerializer):
 class QuestionDetailSerializer(serializers.ModelSerializer):
     question = serializers.SerializerMethodField()
     answer = serializers.SerializerMethodField()
+    problem_id = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_problem_id(task_question):
+        return task_question.id
 
     @staticmethod
     def get_question(task_question):
@@ -61,12 +66,13 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
         model = TaskQuestion
         fields = [
             'question',
-            'answer'
+            'answer',
+            'problem_id'
         ]
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
-    question_details = serializers.SerializerMethodField()
+    question_problems = serializers.SerializerMethodField()
     task_id = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
@@ -89,7 +95,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
         return assignment.start_date + timedelta(seconds=assignment.task.duration)
 
     @staticmethod
-    def get_question_details(assignment):
+    def get_question_problems(assignment):
         task_questions = assignment.task.task_questions
 
         result = []
@@ -105,11 +111,11 @@ class AssignmentSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'end_time',
-            'question_details',
+            'question_problems',
         ]
 
 
 class SubmissionSerializer(serializers.Serializer):
-    task_question_id = serializers.IntegerField()
+    problem_id = serializers.IntegerField()
     code = serializers.CharField()
     language_id = serializers.IntegerField()
